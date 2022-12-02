@@ -45,11 +45,10 @@ export const getPostsBySearch = async (req, res) => {
   }
 };
 export const getPostsForUser = async (req, res) => {
-  const { id, name } = req.query;
-  console.log(name);
+  const { id } = req.query;
   try {
     // const title = new RegExp(name, "i");
-    const posts = await PostMessage.find({ creator: id }, { name: name });
+    const posts = await PostMessage.findById({ creator: id });
     res.json({ data: posts });
   } catch (error) {
     res.status(404).json({ message: error.message });
